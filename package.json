@@ -54,7 +54,6 @@
     "csstype": "^2.6.8",
     "dotenv-flow": "^3.1.0",
     "express": "^4.17.1",
-    "formik": "^2.0.8",
     "fs": "^0.0.1-security",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
@@ -63,9 +62,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "json-diff": "^0.5.4",
-    "lodash.throttle": "^4.1.1",
     "map-stream": "^0.0.7",
-    "modernizr": "^3.7.0",
     "moment": "^2.24.0",
     "next": "9.4.4",
     "next-compose-plugins": "^2.2.0",
@@ -93,11 +90,9 @@
     "reselect": "^4.0.0",
     "sass-resources-loader": "^2.0.1",
     "subscriptions-transport-ws": "^0.9.16",
-    "swiper": "^5.3.6",
     "ts-node": "^8.5.4",
     "vinyl-fs": "^3.0.3",
-    "webpack-filter-warnings-plugin": "^1.2.1",
-    "yup": "^0.28.0"
+    "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -123,7 +118,6 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
-    "faker": "^4.1.0",
     "file-loader": "^5.0.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
@@ -131,7 +125,6 @@
     "precommit": "^1.2.2",
     "prettier": "^1.19.1",
     "typescript": "3.8.3",
-    "url-loader": "^3.0.0",
-    "webpack-modernizr-loader": "^5.0.0"
+    "url-loader": "^3.0.0"
   }
 }

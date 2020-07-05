@@ -8,7 +8,6 @@ import { compose } from 'redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import { ApolloProvider } from '@apollo/react-hooks';
-import 'modernizr';
 
 /**
  * utils

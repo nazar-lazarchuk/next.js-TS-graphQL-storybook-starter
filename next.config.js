@@ -14,34 +14,8 @@ const env = process.env.ENV || 'development';
 
 const nextConfig = {
   distDir: '_next',
-  webpack: function (config, {isServer}) {
+  webpack(config, {isServer}) {
     // from https://github.com/cyrilwanner/next-compose-plugins/issues/22#issuecomment-548791323
-
-    config.module.rules.push({
-      test: /\.svgm$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            svgoConfig: {
-              multipass: true,
-              plugins: [
-                { sortAttrs: true },
-                { removeViewBox: false }
-              ],
-            },
-          }
-        },
-      ],
-    });
-    
-    config.module.rules.push({
-      loader: path.resolve('./webpack/loaders/modernizr.js'),
-      test: /\.modernizrrc\.js$/
-      // Uncomment this when you use `JSON` format for configuration
-      // type: 'javascript/auto'
-    })  
-    config.resolve.alias['modernizr'] = path.resolve('./.modernizrrc.js');
 
     if (!isServer) {
       // Fixes npm packages that depend on `fs` module

@@ -1,8 +1,6 @@
-const path = require("path");
-
-const withSass = require("@zeit/next-sass");
-const withCss = require("@zeit/next-css");
-const withPlugins = require("next-compose-plugins");
+const withSass = require('@zeit/next-sass');
+const withCss = require('@zeit/next-css');
+const withPlugins = require('next-compose-plugins');
 const withTypescript = require('@zeit/next-typescript');
 const { PHASE_PRODUCTION_BUILD } = require('next/constants');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
@@ -12,17 +10,21 @@ const resolveTsconfigPathsToAlias = require('./utils/resolve-tsconfig-path-to-we
 const isDebugMode = !!process.env.DEBUG_MODE;
 const env = process.env.ENV || 'development';
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const nextConfig = {
   distDir: '_next',
-  webpack(config, {isServer}) {
+  webpack(config, { isServer }) {
     // from https://github.com/cyrilwanner/next-compose-plugins/issues/22#issuecomment-548791323
 
     if (!isServer) {
       // Fixes npm packages that depend on `fs` module
       config.node = {
-        fs: 'empty'
-      }
-    }        
+        fs: 'empty',
+      };
+    }
 
     // add aliases from .tsconfig to webpack resolve config
     config.resolve.alias = {
@@ -46,10 +48,10 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
       use: {
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 100000,
-          name: "[name].[ext]",
+          name: '[name].[ext]',
         },
       },
     });
@@ -63,7 +65,7 @@ const nextConfig = {
           options: {
             resources: [
               'app/assets/styles/config/index.scss',
-              'app/assets/styles/mixins/index.scss'
+              'app/assets/styles/mixins/index.scss',
             ],
           },
         },
@@ -76,26 +78,30 @@ const nextConfig = {
       }),
     );
 
-    return config
+    return config;
   },
 };
 
-module.exports = withPlugins([
-  withCss,
+module.exports = withPlugins(
   [
-    withSass,
-    {
-      cssModules: true,
-      cssLoaderOptions: {
-        importLoaders: 1,
-        localIdentName: "[name]__[local]__[hash:base64:5]",
-      },
-      [PHASE_PRODUCTION_BUILD]: {
+    withCss,
+    [
+      withSass,
+      {
+        cssModules: true,
         cssLoaderOptions: {
-          localIdentName: '[hash:base64:8]',
+          importLoaders: 1,
+          localIdentName: '[name]__[local]__[hash:base64:5]',
+        },
+        [PHASE_PRODUCTION_BUILD]: {
+          cssLoaderOptions: {
+            localIdentName: '[hash:base64:8]',
+          },
         },
       },
-    },
+    ],
+    withTypescript,
+    withBundleAnalyzer,
   ],
-  withTypescript
-], nextConfig);
+  nextConfig,
+);

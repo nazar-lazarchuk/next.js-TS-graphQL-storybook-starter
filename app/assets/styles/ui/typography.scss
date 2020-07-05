@@ -1,0 +1,77 @@
+._head-1 {
+  @include fluid-size(font-size, 38px, 80px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  @extend ._head-1;
+  margin: 0.5em 0;
+}
+
+// h2
+
+._head-2 {
+  @include fluid-size(font-size, 25px, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h2 {
+  @extend ._head-2;
+  margin: 0.5em 0;
+}
+
+// h3
+
+._head-3 {
+  @include fluid-size(font-size, 16px, 22px);
+  color: $text-color-5;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h3 {
+  @extend ._head-3;
+  margin: 0.5em 0;
+}
+
+// h3
+
+._head-4 {
+  @include fluid-size(font-size, 16px, 22px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h4 {
+  @extend ._head-4;
+  margin: 0.5em 0;
+}
+
+._p-1 {
+  @include fluid-size(font-size, 14px, 18px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+p {
+  @extend ._p-1;
+  margin: 0.5em 0;
+}
+
+._p-2 {
+  @include fluid-size(font-size, 12px, 16px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+._p-3 {
+  @include fluid-size(font-size, 10px, 14px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+._cms {
+  padding: 20px 0;
+}

@@ -1,0 +1,57 @@
+module.exports = {
+  extends: ['react-app', 'airbnb-typescript'],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {},
+    },
+  },
+  rules: {
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': [
+      2,
+      {
+        ignore: ['modern'],
+      },
+    ],
+    'global-require': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/prop-types': 0,
+    'react/no-array-index-key': 0,
+    'no-param-reassign': 0,
+    'dot-notation': 0,
+    'arrow-parens': 0,
+    'arrow-body-style': 0,
+    'object-curly-newline': 0,
+    'object-shorthand': 0,
+    'no-alert': 0,
+    'react/jsx-curly-brace-presence': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'react/no-unescaped-entities': 0,
+    'react/jsx-one-expression-per-line': 0,
+    'no-unused-vars': 1,
+    '@typescript-eslint/no-unused-vars': 1,
+    'no-nested-ternary': 0,
+    'jsx-a11y/label-has-associated-control': 0,
+    'import/first': 0,
+    'import/order': 0,
+    'no-plusplus': 0,
+    // prettier
+    'max-len': ['error', { code: 200 }],
+    indent: [1, 2, { SwitchCase: 1 }],
+    quotes: ['error', 'single'],
+    'comma-dangle': ['error', 'only-multiline'],
+    'object-curly-spacing': ['error', 'always'],
+    'no-use-before-define': ['error', { functions: false, classes: false }],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: false },
+    ],
+    'linebreak-style': 0,
+    'react-hooks/exhaustive-deps': 0,
+  },
+};

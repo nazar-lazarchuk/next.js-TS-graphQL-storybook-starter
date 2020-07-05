@@ -1,0 +1,6 @@
+@import "../helpers/decimal-round";
+
+@mixin fontSize($size, $line){
+  font-size: ($size / 16) + rem;
+  line-height: decimal-round($line / $size, 2);
+}

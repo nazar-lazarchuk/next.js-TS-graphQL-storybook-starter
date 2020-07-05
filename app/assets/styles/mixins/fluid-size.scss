@@ -1,0 +1,31 @@
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-size(
+    $name, 
+    $min-size, 
+    $max-size, 
+    $min-vw: $site-min-width, 
+    $max-vw: $site-max-width
+  ){
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-size);
+  $u4: unit($max-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      #{$name}: $min-size;
+      @media screen and (min-width: $min-vw) {
+        #{$name}: calc(
+          #{$min-size} + #{strip-unit($max-size - $min-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
+      }
+      @media screen and (min-width: $max-vw) {
+        #{$name}: $max-size;
+      }
+    }
+  }
+}

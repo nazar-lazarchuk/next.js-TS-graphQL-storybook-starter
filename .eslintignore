@@ -1,0 +1,6 @@
+server/dist
+server/tsconfig.server.json
+app/__mocks__
+app/assets
+next.config.js
+**/*.scss

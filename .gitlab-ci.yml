@@ -1,0 +1,87 @@
+image: node:latest
+stages:
+  - init
+  - test
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+#    - .next/cache/
+
+install_deps:
+  stage: init
+  script: 
+  - npm i -q
+  artifacts:
+    untracked: true
+    expire_in: 1 week
+    paths:
+     - node_modules/
+  only:
+  - develop
+  - master
+
+test:
+  stage: test
+  script: 
+    - echo "Running tests"
+    - pwd
+    - ls -la
+    
+build:
+  stage: build
+  script:
+    - echo "Building the app"
+    - npm run build
+  artifacts:
+    untracked: true
+    expire_in: 1 week
+    paths:
+      - node_modules/
+      #- server/
+      #- .next/
+     
+deploy_review:
+  stage: deploy
+  script:
+    - echo "Deploy a review app"
+    - cd ../
+    - rsync -a --progress site-client/.* /var/www/anc.dev.oyihost.com --exclude .git
+    - cd /var/www/anc.dev.oyihost.com
+    - pm2 restart ecosystem.config.js --only develop
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: http://anc.dev.oyihost.com
+  only:
+    - branches
+  except:
+    - master
+
+deploy_staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging server"
+    - cd ../
+    - rsync -a --progress site-client/.* /var/www/staging.anc.dev.oyihost.com --exclude .git
+    - cd /var/www/staging.anc.dev.oyihost.com
+    - pm2 restart ecosystem.config.js --only staging
+  environment:
+    name: staging
+    url: http://staging.anc.dev.oyihost.com
+  when: manual
+  only:
+  - develop
+
+deploy_prod:
+  stage: deploy
+  script:
+    - echo "Deploy to production server"
+  environment:
+    name: production
+    url: http://prod.anc.dev.oyihost.com
+  when: manual
+  only:
+  - master

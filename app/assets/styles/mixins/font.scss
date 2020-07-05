@@ -1,0 +1,5 @@
+@import '../helpers/decimal-round';
+
+@mixin font($weight, $size, $line, $family: $opensans) {
+  font: $weight (($size / 16) + rem)/ (decimal-round($line / $size, 2)) $family;
+}

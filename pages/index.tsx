@@ -12,9 +12,9 @@ const IndexPage: NextPage<WithTranslation, {}> = () => {
   return (
     <PageLayout>
       <Head>
-        <title>HiHome</title>
+        <title>Index page</title>
       </Head>
-      <h1>HiHome</h1>
+      <h1>Index page</h1>
     </PageLayout>
   );
 };

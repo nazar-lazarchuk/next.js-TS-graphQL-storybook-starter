@@ -20,7 +20,7 @@ const IndexPage: NextPage<WithTranslation, {}> = () => {
   return (
     <PageLayout>
       <Head>
-        <title>HiHome</title>
+        <title>Test page</title>
       </Head>
       <h1>SSR test</h1>
       <Link href="/graphql-test-ssr"><a>goto SSR test</a></Link>
